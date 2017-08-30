@@ -33,6 +33,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     
     var imageUrlArray = [String]()
     var imageArray = [UIImage]()
+    var photoTitlesArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,16 +144,17 @@ extension MapVC: MKMapViewDelegate {
         cancelAllSessions()
         imageUrlArray = []
         imageArray = []
+        photoTitlesArray = []
         
         collectionView?.reloadData()
+        
+        let touchPoint = sender.location(in: mapView)
+        let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         
         animateViewUp()
         addSwipe()
         addSpinner()
         addProgressLbl()
-        
-        let touchPoint = sender.location(in: mapView)
-        let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         
         let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
         mapView.addAnnotation(annotation)
@@ -185,6 +187,9 @@ extension MapVC: MKMapViewDelegate {
             for photo in photosDictArray {
                 let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_h_d.jpg"
                 self.imageUrlArray.append(postUrl)
+                
+                let photoTitle = "\(photo["title"]!)"
+                self.photoTitlesArray.append(photoTitle)
             }
             handler(true)
         }
@@ -244,7 +249,7 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else { return }
-        popVC.initData(forImage: imageArray[indexPath.row])
+        popVC.initData(forImage: imageArray[indexPath.row], withTitle: photoTitlesArray[indexPath.row])
         present(popVC, animated: true, completion: nil)
     }
 }
@@ -254,7 +259,7 @@ extension MapVC: UIViewControllerPreviewingDelegate {
         guard let indexPath = collectionView?.indexPathForItem(at: location), let cell = collectionView?.cellForItem(at: indexPath) else { return nil }
         
         guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else { return nil }
-        popVC.initData(forImage: imageArray[indexPath.row])
+        popVC.initData(forImage: imageArray[indexPath.row], withTitle: photoTitlesArray[indexPath.row])
         
         previewingContext.sourceRect = cell.contentView.frame
         return popVC

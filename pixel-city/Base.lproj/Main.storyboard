@@ -10,6 +10,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="AvenirNext.ttc">
+            <string>AvenirNext-Bold</string>
             <string>AvenirNext-DemiBold</string>
         </array>
     </customFonts>
@@ -29,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double-tap to drop a pin and view photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPB-kQ-T5X">
-                                        <rect key="frame" x="22" y="25" width="330" height="21"/>
+                                        <rect key="frame" x="22" y="34.5" width="330" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="330" id="7gi-t6-crz"/>
                                             <constraint firstAttribute="height" constant="21" id="Soe-eN-0J2"/>
@@ -42,7 +43,7 @@
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.65098039215686276" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="oPB-kQ-T5X" firstAttribute="centerX" secondItem="ywj-AM-xDj" secondAttribute="centerX" id="9cg-kV-gR4"/>
-                                    <constraint firstItem="oPB-kQ-T5X" firstAttribute="centerY" secondItem="ywj-AM-xDj" secondAttribute="centerY" id="Clz-ZL-Mxz"/>
+                                    <constraint firstItem="oPB-kQ-T5X" firstAttribute="centerY" secondItem="ywj-AM-xDj" secondAttribute="centerY" constant="10" id="Clz-ZL-Mxz"/>
                                     <constraint firstAttribute="height" constant="70" id="U07-3P-KXR"/>
                                 </constraints>
                             </view>
@@ -121,19 +122,29 @@
                                     <constraint firstAttribute="width" constant="200" id="iYw-7c-ycc"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nuc-f1-wDI">
+                                <rect key="frame" x="20" y="40" width="335" height="29"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0QW-qc-FxI" firstAttribute="top" secondItem="Usw-6m-VLt" secondAttribute="top" id="K5c-U1-WDL"/>
                             <constraint firstItem="0QW-qc-FxI" firstAttribute="bottom" secondItem="jxE-TE-3Mq" secondAttribute="bottom" id="Nly-mB-1Cd"/>
+                            <constraint firstItem="jxE-TE-3Mq" firstAttribute="trailing" secondItem="Nuc-f1-wDI" secondAttribute="trailing" constant="20" id="YQ3-on-6oF"/>
+                            <constraint firstItem="Nuc-f1-wDI" firstAttribute="top" secondItem="jxE-TE-3Mq" secondAttribute="top" constant="20" id="dth-Q9-Ijc"/>
                             <constraint firstItem="0QW-qc-FxI" firstAttribute="leading" secondItem="jxE-TE-3Mq" secondAttribute="leading" id="hnL-3w-fFP"/>
                             <constraint firstItem="0QW-qc-FxI" firstAttribute="trailing" secondItem="jxE-TE-3Mq" secondAttribute="trailing" id="n56-ML-XZ5"/>
                             <constraint firstItem="jxE-TE-3Mq" firstAttribute="bottom" secondItem="mmg-Pc-d8e" secondAttribute="bottom" constant="20" id="nB9-0E-I5j"/>
                             <constraint firstItem="mmg-Pc-d8e" firstAttribute="centerX" secondItem="Usw-6m-VLt" secondAttribute="centerX" id="nP3-1t-uwP"/>
+                            <constraint firstItem="Nuc-f1-wDI" firstAttribute="leading" secondItem="jxE-TE-3Mq" secondAttribute="leading" constant="20" id="x3d-tK-JWJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jxE-TE-3Mq"/>
                     </view>
                     <connections>
+                        <outlet property="photoTitleLbl" destination="Nuc-f1-wDI" id="nQD-ep-ZMU"/>
                         <outlet property="popImageView" destination="0QW-qc-FxI" id="imx-kX-2e3"/>
                     </connections>
                 </viewController>
